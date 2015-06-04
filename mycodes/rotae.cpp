@@ -1,0 +1,92 @@
+#include<stdio.h>
+#include<stdlib.h>
+int main()
+{
+	long long int a[100000],v[100000],i,j,c,n,m,start=1,end;
+	char q[100000];
+	scanf("%lld%lld",&n,&m);
+	for(i=1;i<=n;i++)
+	{
+		scanf("%lld",&a[i]);
+	}end=n;
+/*	for(i=0;i<m;i++)
+	{
+		fflush(stdin);
+		scanf("%c%lld",&q[i],&v[i]);
+	}*/
+	for(i=1;i<=m;i++)
+	{
+		c=1;
+		fflush(stdin);
+		scanf("%c%lld",&q[i],&v[i]);
+		if(q[i]=='R')
+		{
+			for(j=start,c=1;c<v[i];)
+			{
+				if(j==n)
+				{
+					j=1;c++;
+				}
+				else
+				{
+					j++;c++;
+				}
+			}
+			printf("%lld\n",a[j]);
+		}
+		else if(q[i]=='C')
+		{
+			for(c=1;c<=v[i];)
+			{
+				if(start==n)
+				{
+					start=1;
+					c++;
+				}
+				else 
+				{
+					start++;
+					c++;
+				}
+			}
+			for(c=1;c<=v[i];)
+			{
+				if(end==n)
+				{
+					end=1;c++;
+				}
+				else
+				{
+					end++;c++;
+				}
+			}
+		}
+		else if(q[i]=='A')
+		{
+			for(c=1;c<=v[i];)
+			{
+				if(start==1)
+				{
+					start=n;c++;
+				}
+				else
+				{
+					start--;c++;
+				}
+			}
+			for(c=1;c<=v[i];)
+			{
+				if(end==1)
+				{
+					end=n;c++;
+				}
+				else
+				{
+					end--;c++;
+				}
+			}
+		}
+			
+		}
+	return 0;
+}

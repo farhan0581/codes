@@ -1,0 +1,84 @@
+#include<stdio.h>
+int main()
+{
+	long long int z=0,t,x,y,x1,x2,y1,y2,a,b,c,d,e,f;
+	scanf("%lld",&t);
+	while(z<t)
+	{
+		fflush(stdin);
+		scanf("%lld%lld%lld%lld%lld%lld",&x,&y,&x1,&y1,&x2,&y2);
+		if(x<0)
+		{
+					x=x*-1;
+		}
+     	if(y<0)
+	   {
+	   	  	y=y*-1;
+	   }
+		if(x1<0)
+		{
+				x1=x1*-1;
+		}
+		if(y1<0)
+	   {
+	   		y1=y1*-1;
+	   }
+		if(x2<0)
+		{
+			x2=x2*-1;
+		}
+		if(y2<0)
+		{
+			y2=y2*-1;
+		}
+		a=x1-x;
+		if(a<0)
+		{
+			a=a*-1;
+		}
+		b=x2-x;
+		if(b<0)
+		{
+			b=b*-1;
+		}
+		if(a<b)
+		{
+				f=a;
+		}
+	
+		else
+		{
+				f=b;
+		}
+	
+		c=y1-y;
+		if(c<0)
+		{
+			c=c*-1;
+		}
+		d=y2-y;
+		if(d<0)
+		{
+			d=d*-1;
+		}
+		if(c<d)
+		{
+				e=c;
+		}
+	
+		else
+		{
+			e=d;
+		}
+		if(f<=e)
+		{
+			printf("%lld\n",f);
+		}
+		else
+		{
+			printf("%lld\n",e);
+		}
+		z++;
+	}
+	return 0;
+}
