@@ -48,7 +48,7 @@ class node
 				return this;
 			}
 		}
-		void display()
+		node *display()
 		{
 			node *temp;
 			temp=this;
@@ -58,8 +58,9 @@ class node
 				cout<<temp->val<<"->";
 				temp=temp->next;
 			}
+			return this;
 		}
-		void insertbet(node *temp)
+		node *insertbet(node *temp)
 		{
 			int x,value;
 			node *ptr;
@@ -73,6 +74,50 @@ class node
 			temp->val=value;
 			temp->next=ptr->next;
 			ptr->next=temp;
+			return this;
+		}
+		node  *sortlists(node *s)
+		{
+			node *temp,*ptr,*nxt,*prev,*pprev;
+			int flag=0;
+			pprev=this;
+			//ptr=this;
+			//cout<<"basic";
+			// for(ptr=this;ptr)
+			// {cout<<"outer";
+				for(ptr=this;ptr->next!=NULL;ptr=ptr->next)
+				{cout<<"in";
+					prev=ptr;
+					nxt=ptr->next;
+					if((prev->val)>=(nxt->val))
+					{
+						//ptr->next=(ptr->next)->next;
+						//(ptr->next)->next=ptr;
+						temp=prev;
+						if(nxt->next==NULL)
+							prev->next=NULL;
+						else
+					    prev->next=nxt->next;
+						nxt->next=temp;
+						flag=1;
+						//ptr=prev;
+						cout<<" if ";
+						if(s==temp)
+						{
+							s=nxt;
+						}
+						else
+						pprev->next=nxt;
+					}
+					pprev=ptr;
+					//ptr=ptr->next;
+				}
+				//ptr=this;
+				// if(flag==0)
+				// 	break;
+				// flag=0;
+			//}
+			return s;
 		}
 		
 };
@@ -92,20 +137,28 @@ int main()
 				{
 					send=new node;
 					start=start->addinfo(send);
+					//cout<<start<<endl;
 					break;
 				}
 			case 2:
 				{
-					start->display();
+					start=start->display();
+					//cout<<start<<endl;
+
 					break;
 				}
 			case 3:
 			{
 				send=new node;
-				start->insertbet(send);
+				start=start->insertbet(send);
 				break;
 			}
 			case 4:
+				{
+					start=start->sortlists(start);
+					break;
+				}
+			case 5:
 				{
 					exit(0);
 					break;
