@@ -100,7 +100,7 @@ class node
 					    prev->next=nxt->next;
 						nxt->next=temp;
 						flag=1;
-						//ptr=prev;
+						//0ptr=prev;
 						cout<<" if ";
 						if(s==temp)
 						{
