@@ -4,8 +4,11 @@
 using namespace std;
 int main()
 {
-	static int com,sy,flag,mcom,msy;
-	int i,j,k,lines=0,
+	static int com,sy,flag,mcom,msy,i,j,k,lines;
+	int arr[10][10][10],narr[10][10],
+
+	//example to understand 3d arrays..
+
 	a[3][2][2]={
 
 		{{1,2},{0}},
@@ -24,6 +27,7 @@ int main()
 	{
 		cout<<"file does not exist\n";
 	}
+	msy=1000;//finding symbols in the text file..
 	while(f)
 	{
 		f>>ch;
@@ -38,7 +42,7 @@ int main()
 			{
 				if(mcom<com)
 					mcom=com;
-				if(msy<sy)
+				if(msy>sy)
 					msy=sy;
 				flag=0;
 				com=0;sy=0;
@@ -50,31 +54,67 @@ int main()
 				flag=1;
 			}
 	}
+	cout<<"gdfg="<<lines<<"cb="<<msy;
+	//now initilaize the 3d array
 
-	//now declare a 3d array
+	for(i=0;i<5;i++)
+		for(j=0;j<5;j++)
+			for(k=0;k<5;k++)
+				arr[i][j][k]=-1;
 
 	//int arr[lines+1][2][mcom+1];
 
-	int arr[10][10][10];
-
 	f.clear();
+	f.seekg(0,ios::beg);
 
-	
-	cout<<"lines,sy,com="<<lines<<" "<<msy<<" "<<mcom<<endl;;
-	for(i=0;i<3;i++)
+	flag=0;
+
+	//Reading from file..
+
+	i=j=k=0;
+	while(f)
 	{
-		for(j=0;j<2;j++)
+		f>>ch;
+
+		if(flag==1)
+			k=0;
+		
+		if(ch=='\n')
 		{
-			for(k=0;k<2;k++)
-			{
-				cout<<a[i][j][k]<<" ";
-			}cout<<endl;
+			i++;
+			j=0;
+			f>>ch;
+		}
+		if(ch==',')
+		{
+			k++;j--;
+			flag=1;
+			f>>ch;
+		}
+		if(ch!=' ' && ch!='\t')
+		{
+			arr[i][j][k]=ch-48;
+			j++;
+		}
+		
+	}
+	k=0;
+	//cout<<"lines,sy,com="<<lines<<" "<<msy<<" "<<mcom<<endl;;
+	//Now create another array by renaming the extra states found..
+	for(i=0;i<=lines;i++)
+	{
+		for(j=0;j<(msy-1);j++)
+		{
+			if(arr[i][j][k+1]!=-1)
+				cout<<arr[i][j][k+1];
+			cout<<arr[i][j][k]<<" ";
 		}cout<<endl;
 	}
 
-	cout<<"here"<<endl;
-
-	//cout<<a[1][1][0];
-
 	return 0;
+}
+//function to add new state..
+void newstate(int parr,int pnarr,int i,int j,int newst)
+{
+	
 }
